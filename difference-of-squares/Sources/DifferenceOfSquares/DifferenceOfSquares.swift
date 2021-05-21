@@ -2,7 +2,6 @@
 import Foundation
 
 struct Squares {
-
     let number: Int
     var squareOfSum: Int {
         get {
@@ -27,7 +26,7 @@ struct Squares {
             return squareOfSum - sumOfSquares
         }
     }
-    
+
     init(_ n: Int) {
         number = n
     }
