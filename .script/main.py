@@ -63,7 +63,6 @@ def runTests(path):
     for report in reportList:
         report = report.strip()
         reportInfo = report.split(" ")
-        print(reportInfo)
         totalTest += int(reportInfo[1])
         totalFail += int(reportInfo[4])
 
