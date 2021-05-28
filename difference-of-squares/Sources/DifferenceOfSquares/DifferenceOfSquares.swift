@@ -1,33 +1,26 @@
 //Solution goes in Sources
 import Foundation
 
-struct Squares {
-    let number: Int
-    var squareOfSum: Int {
-        get {
-            var result = 0
-            for n in 1...number {
-                result += n
-            }
-            return Int(pow(Double(result), 2.0))
-        }
-    }
-    var sumOfSquares: Int  {
-        get {
-            var result = 0
-            for n in 1...number {
-                result += Int(pow(Double(n), 2.0))
-            }
-            return result
-        }
-    }
-    var differenceOfSquares: Int  {
-        get {
-            return squareOfSum - sumOfSquares
-        }
+class Squares {
+    let limit: Int
+
+    init(_ limit: Int) {
+        self.limit = limit
     }
 
-    init(_ n: Int) {
-        number = n
-    }
+    lazy var squareOfSum: Int = {
+        let sum = (1...self.limit).reduce(0, +)
+        return sum * sum
+    }()
+
+    lazy var sumOfSquares: Int = {
+        let sum = (1...self.limit)
+                    .map {$0 * $0}
+                    .reduce(0, +)
+        return sum
+    }()
+
+    lazy var differenceOfSquares: Int = {
+        return self.squareOfSum - self.sumOfSquares
+    }()
 }
