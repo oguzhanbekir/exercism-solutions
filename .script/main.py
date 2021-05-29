@@ -35,7 +35,7 @@ def runTests(path):
             arr = output.split("\n")
             if "" in arr: 
                 arr.remove("")
-            reportList.append(arr[-1])
+            reportList.append(arr[-2])
             packageCount += 1
         except subprocess.CalledProcessError as e:
             output = e.output.decode("utf-8")
@@ -54,7 +54,7 @@ def runTests(path):
             elif "can't cd" in output:
                 continue
             else:
-                reportList.append(arr[-1])
+                reportList.append(arr[-2])
                 testFaileds.append(folder)
                 packageCount += 1
 
