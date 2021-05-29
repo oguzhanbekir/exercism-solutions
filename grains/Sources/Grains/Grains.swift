@@ -16,6 +16,5 @@ struct Grains {
         guard case 1...64 = input else { throw GrainsError(input) }
         return uint64(1) << uint64(input - 1)
     }
-    
     static let total = uint64.max
 }
