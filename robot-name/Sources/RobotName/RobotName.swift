@@ -1,28 +1,30 @@
 //Solution goes in Sources
-import Foundation
 
-class Robot {
-    static var assignedNames: Set<String> = Set<String>()
-    static func generateName() -> String {
-        var newName: String
-        repeat {
-            let char1 = UnicodeScalar(UInt8(arc4random_uniform(26) + 65))
-            let char2 = UnicodeScalar(UInt8(arc4random_uniform(26) + 65))
-            let number = arc4random_uniform(999)
-            newName = char1.description + char2.description + number.description
-        } while assignedNames.contains(newName)
-        assignedNames.insert(newName)
-        return newName
-    }
-    
+struct Robot {
     var name: String
-    
+
     init() {
-        self.name = Robot.generateName()
+        name = ""
+        generateName()
     }
-    
-    func resetName() {
-        self.name = Robot.generateName()
-        Robot.assignedNames.remove(self.name)
+
+    mutating func generateName() {
+        let codePatter = "LLDDD"
+        for type in codePatter {
+            switch (type) {
+            case "L":
+                name += String("ABCDEFGHIJKLMNOPQRSTUVWXYZ".randomElement()!)
+                break
+            case "D":
+                name += String(Int.random(in: 0...9))
+                break
+            default: break
+            }
+        }
     }
+
+    mutating func resetName() {
+        generateName()
+    }
+
 }
